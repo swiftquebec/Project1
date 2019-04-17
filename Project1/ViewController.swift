@@ -43,6 +43,13 @@ class ViewController: UITableViewController {
             pictures.sort()
         }
         print(pictures)
+        
+        // Adding rightbar button
+        // ".action" displays system icon.
+        // "#selector" denotes we are calling the shareTapped method
+        // located in "self" i.e., the present viewcontroller
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self
+            , action: #selector(shareTapped))
     }
     
     // Require two methods:
@@ -79,5 +86,11 @@ class ViewController: UITableViewController {
             // Push it onto the navigation controller:
             navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    @objc func shareTapped() {
+        let items: [Any] = ["This app is the best!", URL(string: "https://www.github.com/swiftquebec/project1")!]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
 }
